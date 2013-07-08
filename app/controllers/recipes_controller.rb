@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
+    params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
     @recipe = Recipe.new(recipe_params)
 
     respond_to do |format|
@@ -40,6 +41,7 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }

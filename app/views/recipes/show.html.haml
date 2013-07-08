@@ -2,13 +2,15 @@
 
 %h1{style:'text-align:center'}= @recipe.name
 
-= image_tag @recipe.pic
+= image_tag @recipe.pic, style: 'height: 200px; width: 200px'
 
+%br
+%br
 %p
   %b Ingredients:
   - @recipe.ingredients.each do |i|
     %p.ingredient= i.name
-    %p.ingredient_pic= image_tag i.pic
+    / %p.ingredient_pic= image_tag i.pic
 
 = link_to 'Edit', edit_recipe_path(@recipe), class: 'btn'
 = link_to 'Back', recipes_path, class: 'btn'
