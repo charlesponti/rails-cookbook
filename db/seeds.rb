@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# dairy, protein, carbohydrate, salt, alcohol, vegetable, fruit
+milk = Ingredient.create! name: 'Milk', pic:'milk-carton.jpg'
+eggs = Ingredient.create! name: 'Eggs', pic:'eggs.jpg'
+chicken = Ingredient.create! name:''
+salt = Ingredient.create! name:'salt'
+
+r = Recipe.create! name: 'Eggs Benedict'
+r.ingredients << eggs
+r.save

@@ -12,5 +12,12 @@
   .field
     = f.label :pic
     = f.text_field :pic
+  .field
+    %b Ingredients:
+    %br
+    - Ingredient.all.each do |i|
+      = check_box_tag 'recipe[ingredient_ids][]', i.id, @recipe.ingredient_ids.include?(i.id)
+      = i.name
+      %br
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn'

@@ -1,12 +1,14 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @recipe.name
-%p
-  %b Pic:
-  = @recipe.pic
+%h1{style:'text-align:center'}= @recipe.name
 
-= link_to 'Edit', edit_recipe_path(@recipe)
-\|
-= link_to 'Back', recipes_path
+= image_tag @recipe.pic
+
+%p
+  %b Ingredients:
+  - @recipe.ingredients.each do |i|
+    %p.ingredient= i.name
+    %p.ingredient_pic= image_tag i.pic
+
+= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn'
+= link_to 'Back', recipes_path, class: 'btn'
