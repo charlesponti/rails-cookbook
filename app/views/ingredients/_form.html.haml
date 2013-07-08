@@ -10,6 +10,9 @@
     = f.label :name
     = f.text_field :name
   .field
+    = f.label :food_type
+    = f.select 'food_type_id', FoodType.all.collect { |f| [f.name,f.id] }
+  .field
     = f.label :pic
     = f.text_field :pic
   .actions

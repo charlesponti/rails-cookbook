@@ -10,6 +10,8 @@
     = csrf_meta_tags
     = yield(:head)
   %body
+    %script{src: '//tinymce.cachefly.net/4.0/tinymce.min.js'}
+    %script tinymce.init({selector: 'textarea'})
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
