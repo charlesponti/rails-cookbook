@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    #@ingredients = {}
   end
 
   # GET /recipes/1/edit
@@ -44,7 +45,7 @@ class RecipesController < ApplicationController
   def update
     params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
     respond_to do |format|
-      if @recipe.update(recipe_params.merge(ingredient_ids: params[:recipe][:ingredient_ids]))
+      if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { head :no_content }
       else

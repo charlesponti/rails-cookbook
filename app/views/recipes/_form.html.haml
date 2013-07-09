@@ -1,12 +1,11 @@
-.span6.well
-  = form_for @recipe do |f|
-    - if @recipe.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@recipe.errors.count, "error")} prohibited this recipe from being saved:"
-        %ul
-          - @recipe.errors.full_messages.each do |msg|
-            %li= msg
-
+= form_for @recipe do |f|
+  .span5.well
+    / - if @recipe.errors.any?
+    / #error_explanation
+    /   %h2= "#{pluralize(@recipe.errors.count, "error")} prohibited this recipe from being saved:"
+    /   %ul
+    /     - @recipe.errors.full_messages.each do |msg|
+    /       %li= msg
     .field
       = f.label :name
       = f.text_field :name
@@ -17,6 +16,10 @@
       = f.label :category
       = f.select 'category_id', Category.all.collect { |c| [c.name,c.id] }
     .field
+      = f.label :directions
+      = f.text_area :directions
+  .span5.well
+    .field
       %b Ingredients:
       %br
       - Ingredient.all.each do |i|
@@ -24,8 +27,14 @@
         = i.name
         %br
     .field
-      = f.label :directions
-      = f.text_area :directions
-    .actions
+      = fields_for :ingredients do |i|
+        = i.label :name
+        = i.text_field :name
+        = i.label :food_type
+        = i.select 'food_type_id', FoodType.all.collect { |ft| [ft.name,ft.id]}
+    .actions.center-text
       = f.submit 'Save', class: 'btn'
       = link_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger'
+      = link_to 'Back', recipes_path, class: 'btn'
+
+

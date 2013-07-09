@@ -2,14 +2,16 @@
   %h2 Recipes
   - @recipes.each do |recipe|
     %p= link_to recipe.name, recipe_path(recipe)
-.span7.well
+.span7.well.center-text
   %h2 Today's Top Recipe
   %h3= @top_recipe.name
   = image_tag @top_recipe.pic, class: 'recipe-pics'
+  %br
   %p 
     %b Ingredients
     %ul.ingredients
       - @top_recipe.ingredients.each do |i|
         %li= i.name
+  %br
   %b Directions
   %p= @top_recipe.directions

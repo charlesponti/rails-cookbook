@@ -12,6 +12,18 @@
  *= require_tree .
  */
 
+.center {
+  margin: auto;
+}
+
  .center-text {
    text-align: center;
+ }
+
+ ul.ingredients {
+  list-style: none;
+  padding-left: 0;
+  li {
+    padding-left: 0;
+  }
  }

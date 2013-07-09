@@ -1,0 +1,6 @@
+- form_for @ingredients
+ = label_tag :name
+ = text_field_tag :name
+
+ = label_tag :food_type
+ = select_tag 'ingredients[]', 'food_type_id', FoodType.all.collect { |ft| [ft.name,ft.id]}
