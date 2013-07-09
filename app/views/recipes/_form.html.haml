@@ -28,3 +28,4 @@
       = f.text_area :directions
     .actions
       = f.submit 'Save', class: 'btn'
+      = link_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger'

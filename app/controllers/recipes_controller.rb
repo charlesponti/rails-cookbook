@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  #before_filter :authenticate, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /recipes
   # GET /recipes.json
@@ -26,7 +27,7 @@ class RecipesController < ApplicationController
   def create
     params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
     @recipe = Recipe.new(recipe_params)
-
+    @recipe.user_id = current_user.id
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
@@ -43,7 +44,7 @@ class RecipesController < ApplicationController
   def update
     params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
     respond_to do |format|
-      if @recipe.update(recipe_params)
+      if @recipe.update(recipe_params.merge(ingredient_ids: params[:recipe][:ingredient_ids]))
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { head :no_content }
       else
@@ -58,7 +59,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     respond_to do |format|
-      format.html { redirect_to recipes_url }
+      format.html { redirect_to '/dashboard' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +72,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :pic, :ingredient_ids, :directions, :category_id)
+      params.require(:recipe).permit(:name, :pic, :directions, :category_id, :user_id, ingredient_ids: [])
     end
 end

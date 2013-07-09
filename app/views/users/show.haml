@@ -1,0 +1,14 @@
+%h1.center-text= "#{@user.fullname}'s Dashboard"
+
+.span4.well.center-text
+  %h3 My Recipes
+  - @user.recipes.each do |recipe|
+    %p= link_to recipe.name, "/myrecipe/#{recipe.id}"
+  - if @user.recipes.count == 0
+    %p You have no recipes
+  %p= link_to 'Add Recipe', new_recipe_path, class: 'btn'
+.span6.well.center-text
+  - if @recipe
+    %h3= @recipe.name
+    %p= @recipe.directions
+    %p= link_to 'Edit', edit_recipe_path(@recipe)

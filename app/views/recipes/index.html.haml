@@ -1,20 +1,22 @@
 %table.table
   %thead
-    %th{colspan:3,style:'text-align:center'}
+    %th{colspan:5,style:'text-align:center'}
       %h1.center-text Recipes
   %tr
     %th Name
+    %th Category
     %th Pic
-    %th
-    %th
+    %th User
     %th
 
   - @recipes.each do |recipe|
     %tr
       %td= link_to recipe.name, recipe
+      %td= recipe.category.name
       %td= recipe.pic
+      %td= recipe.user.name
       %td
         = link_to 'Edit', edit_recipe_path(recipe), class: 'btn'
         = link_to 'Destroy', recipe, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
   %tr
-    %td{colspan:3,style:'text-align:center'}= link_to 'New Recipe', new_recipe_path, class: 'btn'
+    %td{colspan:5,style:'text-align:center'}= link_to 'New Recipe', new_recipe_path, class: 'btn'

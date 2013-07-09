@@ -1,0 +1,11 @@
+.login-form
+  %h2 Log In
+  %br
+  = form_tag sessions_path do
+    = label_tag :name
+    = text_field_tag :name
+
+    = label_tag :password
+    = text_field_tag :password
+    %br
+    = submit_tag 'Log In', class: 'btn'

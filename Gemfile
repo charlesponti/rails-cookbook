@@ -19,7 +19,8 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
 
-gem 'devise'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'cancan'
 
 group :doc do
   gem 'sdoc', require: false

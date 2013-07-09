@@ -1,0 +1,16 @@
+%h1.center-text= "Admin Dashboard"
+
+.span4.well
+  %table.table{style:'width: 17%; margin: auto'}
+  %thead
+    %th{colspan: 2}
+      %h1.center-text Users
+  %tr
+    %th Name
+    %th Username
+  - @users.each do |user|
+    %tr
+      %td= link_to user.fullname, edit_user_path(user)
+      %td= user.name
+  %tr
+    %td{colspan: 2, class:'center-text'}= link_to 'New User', new_user_path, class: 'btn'

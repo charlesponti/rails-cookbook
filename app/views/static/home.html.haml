@@ -1,2 +1,15 @@
-%h1 Static#home
-%p Find me in app/views/static/home.html.haml
+.span3.well.center-text
+  %h2 Recipes
+  - @recipes.each do |recipe|
+    %p= link_to recipe.name, recipe_path(recipe)
+.span7.well
+  %h2 Today's Top Recipe
+  %h3= @top_recipe.name
+  = image_tag @top_recipe.pic, class: 'recipe-pics'
+  %p 
+    %b Ingredients
+    %ul.ingredients
+      - @top_recipe.ingredients.each do |i|
+        %li= i.name
+  %b Directions
+  %p= @top_recipe.directions

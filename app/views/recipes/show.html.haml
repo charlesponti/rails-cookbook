@@ -16,7 +16,9 @@
 %p
   %b Directions
   %br
-  = @recipe.directions
+  = raw @recipe.directions
 
-= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn'
+- if @recipe.user_id == current_user.id
+  = link_to 'Edit', edit_recipe_path(@recipe), class: 'btn'
+  
 = link_to 'Back', recipes_path, class: 'btn'
