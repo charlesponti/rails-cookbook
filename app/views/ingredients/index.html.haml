@@ -11,7 +11,7 @@
   - @ingredients.each do |ingredient|
     %tr
       %td= link_to ingredient.name, ingredient
-      %td= ingredient.pic
+      %td= ingredient.ingredient_image.url
       %td= ingredient.food_type.name
       %td
         = link_to 'Edit', edit_ingredient_path(ingredient), class: 'btn'

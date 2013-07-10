@@ -13,7 +13,7 @@
     = f.label :food_type
     = f.select 'food_type_id', FoodType.all.collect { |f| [f.name,f.id] }
   .field
-    = f.label :pic
-    = f.text_field :pic
+    = f.label :ingredient_image
+    = f.file_field :ingredient_image
   .actions
     = f.submit 'Save'

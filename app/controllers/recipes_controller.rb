@@ -44,10 +44,6 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
     params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
-    params[:ingredients].each do |x|
-      i = Ingredient.create(name: x[:name], food_type_id: x[:food_type_id])
-      @recipe.ingredients << i
-    end
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -55,6 +51,12 @@ class RecipesController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+    params[:ingredients].each do |x|
+      if !x[:name].empty?
+        i = Ingredient.create(name: x[:name], food_type_id: x[:food_type_id])
+        i.recipes << @recipe
       end
     end
   end
@@ -77,7 +79,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :pic, :directions, :category_id, :user_id, ingredient_ids: [],
-        ingredients: [:name, :food_type_id])
+      params.require(:recipe).permit(:name, :recipe_image, :directions, :category_id, :user_id, ingredient_ids: [])
     end
 end

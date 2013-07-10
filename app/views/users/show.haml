@@ -12,3 +12,5 @@
     %h3= @recipe.name
     %p= @recipe.directions
     %p= link_to 'Edit', edit_recipe_path(@recipe)
+  - else
+    = image_tag @user.user_image.detail.url, style:'border-radius:100%'

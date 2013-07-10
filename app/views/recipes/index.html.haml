@@ -13,7 +13,7 @@
     %tr
       %td= link_to recipe.name, recipe
       %td= recipe.category.name
-      %td= recipe.pic
+      %td= recipe.recipe_image.url
       %td= recipe.user.name
       %td
         = link_to 'Edit', edit_recipe_path(recipe), class: 'btn'

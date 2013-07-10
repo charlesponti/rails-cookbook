@@ -35,8 +35,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    # if params[:current_password]
-    @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user].permit(:fullname, :name, :email, :password, :password_confirmation, :user_image))
+      redirect_to '/dashboard'
+    end
   end
 
   def destroy
@@ -48,6 +49,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:fullname, :name, :email, :password, :password_confirmation, :user_image)
   end
 end

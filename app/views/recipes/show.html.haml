@@ -1,24 +1,23 @@
-%h1{style:'text-align:center'}= @recipe.name
+.span9.offset1.well.center-text
+  %h1{style:'text-align:center'}= @recipe.name
 
-= image_tag @recipe.pic, style: 'height: 200px; width: 200px'
+  = image_tag @recipe.recipe_image.detail.url
 
-%br
-%br
-%p
-  %b Category
-  %p= @recipe.category.name.capitalize
-%p
-  %b Ingredients:
-  - @recipe.ingredients.each do |i|
-    %p.ingredient= i.name
-    / %p.ingredient_pic= image_tag i.pic
-
-%p
-  %b Directions
   %br
-  = raw @recipe.directions
+  %br
+  %p.recipe-details
+    %b Category
+    %p= @recipe.category.name.capitalize
+  %p
+    %b Ingredients:
+    - @recipe.ingredients.each do |i|
+      %p.ingredient= i.name
 
-- if @recipe.user_id == current_user.id
-  = link_to 'Edit', edit_recipe_path(@recipe), class: 'btn'
-  
-= link_to 'Back', recipes_path, class: 'btn'
+  %p
+    %b Directions
+    %br
+    = raw @recipe.directions
+
+  - if owner? || admin?
+    = link_to 'Edit', edit_recipe_path(@recipe), class: 'btn'  
+  = link_to 'Back', recipes_path, class: 'btn'

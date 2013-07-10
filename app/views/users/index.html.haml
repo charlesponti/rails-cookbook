@@ -5,9 +5,11 @@
   %tr
     %th Name
     %th Username
+    %th Avatar Url
   - @users.each do |user|
     %tr
       %td= user.fullname
       %td= user.name
+      %td= user.user_image.url
   %tr
     %td{colspan: 2, class:'center-text'}= link_to 'New User', new_user_path, class: 'btn'

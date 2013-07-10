@@ -1,9 +1,13 @@
-%p
-  %b Name:
-  = @ingredient.name
-%p
-  %b Pic:
-  = @ingredient.pic
+.span9.offset1.well.center-text
+  %p
+    %h2= @ingredient.name
+  %p
+    %b Food Type:
+    = @ingredient.food_type.name
+  %p
+    %b Pic:
+    %br
+    = image_tag @ingredient.ingredient_image.url
 
-= link_to 'Edit', edit_ingredient_path(@ingredient), class: 'btn'
-= link_to 'Back', ingredients_path, class: 'btn'
+  = link_to 'Edit', edit_ingredient_path(@ingredient), class: 'btn'
+  = link_to 'Back', ingredients_path, class: 'btn'

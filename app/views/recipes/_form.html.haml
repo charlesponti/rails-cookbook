@@ -10,8 +10,8 @@
       = f.label :name
       = f.text_field :name
     .field
-      = f.label :pic
-      = f.text_field :pic
+      = f.label :recipe_image
+      = f.file_field :recipe_image
     .field
       = f.label :category
       = f.select 'category_id', Category.all.collect { |c| [c.name,c.id] }
@@ -31,10 +31,12 @@
       = text_field_tag 'ingredients[][name]'
       = label_tag 'food_type'
       - FoodType.all.each do |ft|
-        = check_box_tag 'ingredients[][food_type_id]', ft.id
+        = radio_button_tag 'ingredients[][food_type_id]', ft.id
         = ft.name
-        /= select_tag 'ingredients[][food_type_id]', FoodType.all.collect { |ft| [ft.name,ft.id]}
+    %br
     %a#add.btn Add Ingredient
+    %br
+    %br
     .actions.center-text
       = f.submit 'Save', class: 'btn'
       = link_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger'

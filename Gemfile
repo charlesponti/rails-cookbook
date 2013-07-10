@@ -22,6 +22,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
+gem 'carrierwave'
+gem 'rmagick'
+
 group :doc do
   gem 'sdoc', require: false
 end
