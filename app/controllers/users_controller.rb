@@ -22,7 +22,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save ? redirect_to(users_path) : render('new')
+    if @user.save
+      session[:user_id] ||= @user.id
+      flash[:notice] = "Welcome, #{@user.fullname}"
+      redirect_to('/dashboard')
+    else 
+      render('new')
+    end
   end
 
   def edit
