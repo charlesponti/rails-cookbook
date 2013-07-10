@@ -19,19 +19,22 @@
       = f.label :directions
       = f.text_area :directions
   .span5.well
-    .field
+    .field.ingredients
       %b Ingredients:
       %br
       - Ingredient.all.each do |i|
         = check_box_tag 'recipe[ingredient_ids][]', i.id, @recipe.ingredient_ids.include?(i.id)
         = i.name
         %br
-    .field
-      = fields_for :ingredients do |i|
-        = i.label :name
-        = i.text_field :name
-        = i.label :food_type
-        = i.select 'food_type_id', FoodType.all.collect { |ft| [ft.name,ft.id]}
+    .field.ingredient-field
+      = label_tag 'name'
+      = text_field_tag 'ingredients[][name]'
+      = label_tag 'food_type'
+      - FoodType.all.each do |ft|
+        = check_box_tag 'ingredients[][food_type_id]', ft.id
+        = ft.name
+        /= select_tag 'ingredients[][food_type_id]', FoodType.all.collect { |ft| [ft.name,ft.id]}
+    %a#add.btn Add Ingredient
     .actions.center-text
       = f.submit 'Save', class: 'btn'
       = link_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger'
