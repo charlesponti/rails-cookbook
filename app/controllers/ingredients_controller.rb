@@ -6,7 +6,12 @@ class IngredientsController < ApplicationController
   def index
     @ingredients = Ingredient.all
   end
-
+  
+  def search
+    @q = Ingredient.search(params[:q])
+    @ingredient = @q.result.first
+    render :show
+  end
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show

@@ -1,0 +1,13 @@
+.span5.well
+  %h2 Search Site
+  %br
+  = search_form_for @q, url: search_recipes_path, html: {method: :post}, class:"navbar-search" do |f|
+    = f.text_field :name_cont, placeholder: 'Search Recipes...'
+  %br
+
+  = search_form_for @q, url: search_ingredients_path, html: {method: :post}, class:"navbar-search" do |f|
+    = f.text_field :name_cont, placeholder: 'Search Ingredients...'
+    
+.span5.well
+  - if @result
+    %p= @result.name

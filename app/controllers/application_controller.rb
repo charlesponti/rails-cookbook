@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  before_filter :search_box
   helper_method :current_user
 
   rescue_from CanCan::AccessDenied do |excepton|
     redirect_to root_url, alert: 'You cannot access this page'
+  end
+
+  def search_box
+    @q = Recipe.search(params[:q])
   end
 
   def current_user

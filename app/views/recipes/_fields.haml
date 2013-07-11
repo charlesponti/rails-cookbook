@@ -1,0 +1,7 @@
+= f.fields_for :ingredients_recipes do |ir|
+  = ir.label :quantity
+  = ir.text_field :quantity
+
+  = ir.collection_select :ingredient_id, Ingredient.all, :id, :name
+  = ir.link_to_remove 'Remove!'
+= f.link_to_add 'Add!',  :ingredients_recipes

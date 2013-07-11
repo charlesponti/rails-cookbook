@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
   def home
-    @recipes = Recipe.all
+    @q = Recipe.search(params[:q])
+    @recipes = @q.result
     @top_recipe = Recipe.last
   end
 
@@ -9,4 +10,8 @@ class StaticController < ApplicationController
 
   def contact
   end
+
+  def search
+  end
+  
 end

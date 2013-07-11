@@ -5,13 +5,12 @@
 .span7.well.center-text
   %h2 Today's Top Recipe
   %h3= @top_recipe.name
-  = image_tag @top_recipe.pic, class: 'recipe-pics'
+  = image_tag @top_recipe.recipe_image.detail.url, class: 'recipe-pics'
   %br
   %p 
     %b Ingredients
-    %ul.ingredients
-      - @top_recipe.ingredients.each do |i|
-        %li= i.name
+    - @top_recipe.ingredients.each do |i|
+      %p= i.name
   %br
   %b Directions
-  %p= @top_recipe.directions
+  %p= raw @top_recipe.directions

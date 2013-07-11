@@ -19,11 +19,15 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
 
+gem 'nested_form'
+
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
 gem 'carrierwave'
 gem 'rmagick'
+
+gem "ransack", github: "ernie/ransack", branch: "rails-4"
 
 group :doc do
   gem 'sdoc', require: false

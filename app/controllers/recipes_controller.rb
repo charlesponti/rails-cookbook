@@ -2,31 +2,32 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   #before_filter :authenticate, only: [:new, :create, :edit, :update, :destroy]
 
-  # GET /recipes
-  # GET /recipes.json
   def index
     @recipes = Recipe.all
   end
+  
+  def search
+    @q = Recipe.search(params[:q])
+    @recipe = @q.result.first
+    if !@recipe
+      flash[:error] = "No matches for #{params[:q][:name_cont]}"
+      redirect_to root_url
+    else
+      render :show
+    end
+  end
 
-  # GET /recipes/1
-  # GET /recipes/1.json
   def show
   end
 
-  # GET /recipes/new
   def new
     @recipe = Recipe.new
-    #@ingredients = {}
   end
 
-  # GET /recipes/1/edit
   def edit
   end
 
-  # POST /recipes
-  # POST /recipes.json
   def create
-    params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     respond_to do |format|
@@ -40,10 +41,8 @@ class RecipesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /recipes/1
-  # PATCH/PUT /recipes/1.json
   def update
-    params[:recipe][:ingredient_ids] ||= [] if params[:recipe]
+    binding.pry
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -53,16 +52,8 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
-    params[:ingredients].each do |x|
-      if !x[:name].empty?
-        i = Ingredient.create(name: x[:name], food_type_id: x[:food_type_id])
-        i.recipes << @recipe
-      end
-    end
   end
 
-  # DELETE /recipes/1
-  # DELETE /recipes/1.json
   def destroy
     @recipe.destroy
     respond_to do |format|
@@ -72,13 +63,11 @@ class RecipesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :recipe_image, :directions, :category_id, :user_id, ingredient_ids: [])
+      params.require(:recipe).permit(:name, :recipe_image, :directions, :category_id, :user_id, :ingredients_recipes_attributes => [:ingredient_id, :quantity, :id, :_destroy] )
     end
 end

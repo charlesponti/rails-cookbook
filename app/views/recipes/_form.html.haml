@@ -1,11 +1,13 @@
-= form_for @recipe do |f|
+.row.offset1.form-warnings
+  - if @recipe.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@recipe.errors.count, "error")} prohibited this recipe from being saved:"
+      %ul
+        - @recipe.errors.full_messages.each do |msg|
+          %li= msg
+
+= nested_form_for @recipe do |f|
   .span5.well
-    / - if @recipe.errors.any?
-    / #error_explanation
-    /   %h2= "#{pluralize(@recipe.errors.count, "error")} prohibited this recipe from being saved:"
-    /   %ul
-    /     - @recipe.errors.full_messages.each do |msg|
-    /       %li= msg
     .field
       = f.label :name
       = f.text_field :name
@@ -19,22 +21,8 @@
       = f.label :directions
       = f.text_area :directions
   .span5.well
-    .field.ingredients
-      %b Ingredients:
-      %br
-      - Ingredient.all.each do |i|
-        = check_box_tag 'recipe[ingredient_ids][]', i.id, @recipe.ingredient_ids.include?(i.id)
-        = i.name
-        %br
-    .field.ingredient-field
-      = label_tag 'name'
-      = text_field_tag 'ingredients[][name]'
-      = label_tag 'food_type'
-      - FoodType.all.each do |ft|
-        = radio_button_tag 'ingredients[][food_type_id]', ft.id
-        = ft.name
-    %br
-    %a#add.btn Add Ingredient
+    .field
+      = render 'fields', f: f
     %br
     %br
     .actions.center-text

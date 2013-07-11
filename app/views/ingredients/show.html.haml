@@ -1,4 +1,4 @@
-.span9.offset1.well.center-text
+.span5.well.center-text
   %p
     %h2= @ingredient.name
   %p
@@ -8,6 +8,10 @@
     %b Pic:
     %br
     = image_tag @ingredient.ingredient_image.url
+.span5.well.center-text
+  %h3= "Recipes with #{@ingredient.name}"
+  - @ingredient.recipes.each do |r|
+    %p= link_to r.name, recipe_path(r)
 
   = link_to 'Edit', edit_ingredient_path(@ingredient), class: 'btn'
   = link_to 'Back', ingredients_path, class: 'btn'

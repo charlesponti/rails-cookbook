@@ -14,12 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require jquery_nested_form
 //= require_tree .
-
-$(document).ready(function() {
-
-  $('#add').on('click', function() {
-    $('.ingredients').append( $('.field.ingredient-field').clone() );
-  });
-
-});

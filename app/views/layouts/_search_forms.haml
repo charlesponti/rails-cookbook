@@ -1,0 +1,6 @@
+%li
+  = search_form_for @q, url: search_recipes_path, html: {method: :post}, class:"navbar-search" do |f|
+    = f.text_field :name_cont, placeholder: 'Search Recipes...'
+%li
+  = search_form_for @q, url: search_ingredients_path, html: {method: :post}, class:"navbar-search" do |f|
+    = f.text_field :name_cont, placeholder: 'Search Ingredients...'
