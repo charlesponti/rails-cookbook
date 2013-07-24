@@ -1,1 +1,8 @@
-Cookbook Web App built with Rails
+Cookbook Web App built with 
+
+1. Rails 4
+2. Postgres
+3. BCrypt
+4. CarrierWave
+5. CanCan
+6. Ransack 
