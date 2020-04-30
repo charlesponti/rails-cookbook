@@ -24,13 +24,13 @@ gem 'nested_form'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
-gem 'carrierwave'
+gem 'carrierwave', '>= 0.9.0'
 gem 'rmagick'
 
 gem "ransack", github: "ernie/ransack", branch: "rails-4"
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', '>= 0.4.0', require: false
 end
 
 group :development do
