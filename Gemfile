@@ -2,29 +2,29 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-gem 'rails', '4.0.0'
+gem 'rails', '5.2.4.3'
 
 gem 'pg'
 
 gem 'thin'
 
-gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.0'
+gem 'haml-rails', '>= 0.5.3'
+gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
+gem 'coffee-rails', '~> 4.2.2'
+gem 'jquery-rails', '>= 4.0.1'
 gem 'bootstrap-sass'
 
-gem 'turbolinks'
+gem 'turbolinks', '>= 1.3.0'
 
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.4', '>= 1.4.2'
 
 gem 'nested_form'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
-gem 'carrierwave'
+gem 'carrierwave', '>= 0.9.0'
 gem 'rmagick'
 
 gem "ransack", github: "ernie/ransack", branch: "rails-4"
