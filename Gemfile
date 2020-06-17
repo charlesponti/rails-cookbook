@@ -2,20 +2,20 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-gem 'rails', '4.0.0'
+gem 'rails', '5.0.0'
 
 gem 'pg'
 
-gem 'thin'
+gem 'thin', '>= 1.5.1'
 
-gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.0'
+gem 'haml-rails', '>= 0.5.3'
+gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
+gem 'coffee-rails', '~> 4.1.1'
+gem 'jquery-rails', '>= 4.4.0'
 gem 'bootstrap-sass'
 
-gem 'turbolinks'
+gem 'turbolinks', '>= 1.3.0'
 
 gem 'jbuilder', '~> 1.2'
 
