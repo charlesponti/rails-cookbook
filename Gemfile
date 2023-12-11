@@ -17,7 +17,7 @@ gem 'bootstrap-sass'
 
 gem 'turbolinks', '>= 1.3.0'
 
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.4', '>= 1.4.2'
 
 gem 'nested_form'
 
