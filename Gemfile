@@ -6,7 +6,7 @@ gem 'rails', '6.0.3.5'
 
 gem 'pg'
 
-gem 'thin'
+gem 'thin', '>= 1.5.1'
 
 gem 'haml-rails', '>= 0.5.3'
 gem 'sass-rails', '~> 5.0.8'
