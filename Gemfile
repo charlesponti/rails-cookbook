@@ -30,7 +30,7 @@ gem 'rmagick'
 gem "ransack", github: "ernie/ransack", branch: "rails-4"
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', '>= 1.0.0', require: false
 end
 
 group :development do
